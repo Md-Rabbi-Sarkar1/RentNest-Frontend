@@ -1,30 +1,28 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
-
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import "./globals.css";
+import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Toaster } from "sonner";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'})
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn("h-full antialiased", "font-sans", inter.variable)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <body className="min-h-full flex flex-col">
+        {/* Navbar */}
+        <Toaster position="top-right" richColors/>
+        {children}
+
+        {/* Footer */}
+        </body>
     </html>
-  )
+  );
 }
