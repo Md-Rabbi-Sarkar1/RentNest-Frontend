@@ -53,13 +53,14 @@ export const loginAction = async (redirectTo:string,prevState : LoginState , for
         if(redirectTo && typeof redirectTo === "string" && redirectTo.startsWith('/') && !redirectTo.startsWith('//')){
             redirect(redirectTo)
         }
-        if(decodedToken.role === "USER"){
-            redirect("/dashboard");
+        if(decodedToken.role === "LANDLORD"){
+            redirect("/landlord-dashboard");
         } else if (decodedToken.role === "ADMIN"){
             redirect("/admin-dashboard");
-        } else if (decodedToken.role === "AUTHOR"){
-            redirect("/author-dashboard");
+        } else if (decodedToken.role === "TENANT"){
+            redirect("/tenant-dashboard");
         }
+        redirect('/')
     }
 
     return result
