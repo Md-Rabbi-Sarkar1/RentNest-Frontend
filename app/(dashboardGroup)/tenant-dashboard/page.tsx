@@ -1,7 +1,7 @@
 
 const TenantDashboardPage = () => {
   return (
-    <div>TenantDashboardPage</div>
+    <div>LandlordDashboardPage</div>
   )
 }
 

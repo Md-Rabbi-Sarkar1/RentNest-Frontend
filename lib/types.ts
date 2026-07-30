@@ -1,3 +1,6 @@
+import { LucideProps } from "lucide-react"
+import { ForwardRefExoticComponent, RefAttributes } from "react"
+
 type IUser = {
     success: boolean,
     message: string,
@@ -44,4 +47,9 @@ export type IPost ={
   landlordId: string;
   categoryId: number;
   landlord:ILanlord
+}
+export type ISidebarItem = {
+    label: string,
+    href: string,
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
 }
