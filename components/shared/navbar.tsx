@@ -25,8 +25,7 @@ const navItems = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
-   { label: "News", href: "/news" },
-  { label: "Premium", href: "/premium" },
+   { label: "Properties", href: "/posts" },
 ];
 
 // User menu items configuration
@@ -66,7 +65,7 @@ export function Navbar({user} : NavbarProps) {
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <span className="text-2xl font-bold text-primary">
-              NextJs Press
+              RENTNEST
             </span>
           </Link>
 
