@@ -39,9 +39,9 @@ export default function DashboardSidebar({user} : NavbarProps) {
   let navItems : ISidebarItem[]  = [];
 
   if(user.data.profile.role === "LANDLORD"){
-    navItems=sidebarMenuItems.USER
+    navItems=sidebarMenuItems.LANDLORD
   }else if (user.data.profile.role === "TENANT") {
-     navItems = sidebarMenuItems.AUTHOR;
+     navItems = sidebarMenuItems.TENANT;
   }else if (user.data.profile.role === "ADMIN") {
      navItems = sidebarMenuItems.ADMIN;
   }
