@@ -63,3 +63,22 @@ export async function getAllPropertiesAction() {
         return { success: false, data: [] };
     }
 }
+
+// Add this inside app/admin-dashboard/_actions/adminActions.ts
+
+// Fetch All Rental Requests from /api/users/rentals
+export async function getAllRentalsAction() {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
+
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/admin/rentals`, {
+            cache: "no-store",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!res.ok) return { success: false, data: [] };
+        return await res.json();
+    } catch (error) {
+        return { success: false, data: [] };
+    }
+}
