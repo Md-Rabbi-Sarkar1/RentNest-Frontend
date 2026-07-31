@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider"; // 👈 Your exact file location
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { Toaster } from "sonner";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-
+export const metadata: Metadata = {
+  title: "RentNest - Property Management System",
+  description: "Find your next home easily",
+};
 
 export default function RootLayout({
   children,
@@ -12,17 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn("h-full antialiased", "font-sans", inter.variable)}
-    >
-      <body className="min-h-full flex flex-col">
-        {/* Navbar */}
-        <Toaster position="top-right" richColors/>
-        {children}
-
-        {/* Footer */}
-        </body>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        {/* The hotkey script initializes inside this provider safely */}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
