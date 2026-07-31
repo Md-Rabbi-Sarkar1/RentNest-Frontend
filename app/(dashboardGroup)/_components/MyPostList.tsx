@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { IPost } from "@/lib/types";
+
 import { IPost } from "@/lib/types";
 import { MyPostCard } from "./MyPostCard";
 import { getMyPost } from "../_actions/myPostsActions";

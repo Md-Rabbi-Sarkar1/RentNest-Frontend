@@ -1,6 +1,6 @@
 "use server"
 import { isAccessTokenExist } from "@/service/refreshToken";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 type PostState = {
@@ -158,4 +158,31 @@ export const getMyPost = async () => {
             message: error.message || "Failed to fetch user posts."
         };
     }
+}
+
+
+
+
+export async function deletePostAction(postId: string) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("accessToken")?.value;
+
+    const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/${postId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`, // Pass token if backend requires auth validation
+        "Content-Type": "application/json"
+      }
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      revalidatePath("/landlord-dashboard/my-posts"); // Force data refresh
+    }
+    return result;
+  } catch (error) {
+    return { success: false, message: "Something went wrong while deleting" };
+  }
 }
