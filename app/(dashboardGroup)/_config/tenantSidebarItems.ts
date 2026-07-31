@@ -12,4 +12,9 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
         href: "/tenant-dashboard/rental-request",
         icon: FileText
     },
+    {
+        label: "Payment History",
+        href: "/tenant-dashboard/payment-history",
+        icon: FileText
+    },
 ]

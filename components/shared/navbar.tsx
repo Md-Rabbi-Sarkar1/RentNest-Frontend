@@ -126,11 +126,17 @@ export function Navbar({user} : NavbarProps) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-            ) : <Link href={"/login"} >
+            ) : <div><Link href={"/login"} >
                    <Button className="cursor-pointer">
                         Login
                    </Button>
             </Link>
+            <Link href={"/register"} >
+                   <Button className="cursor-pointer">
+                        Register
+                   </Button>
+            </Link>
+            </div>
           }
         </div>
       </div>

@@ -65,3 +65,43 @@ export const loginAction = async (redirectTo:string,prevState : LoginState , for
 
     return result
 }
+
+type RegisterState = {
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data?: any;
+}
+
+export const registerAction = async (prevState: any, formData: FormData) => {
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const role = formData.get("role");
+
+    // Construct payload required by your backend
+    const payload = {
+        name,
+        email,
+        password,
+        role,
+        profilePhoto: "" // Match schema placeholder requirement
+    }
+
+    const res = await fetch(`${process.env.BACKEND_API_URL}/api/users/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+        // Redirect to login page after successful registration
+        redirect("/login");
+    }
+
+    return result;
+}
