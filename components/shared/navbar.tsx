@@ -56,6 +56,10 @@ export function Navbar({user} : NavbarProps) {
         toast.success("User Logged Out Successfully!");
         router.push("/login");
     }
+    if(action === "profile"){
+        router.push("/profile");
+        return;
+    }
   };
 
   return (
