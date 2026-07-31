@@ -4,7 +4,9 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CreditCard, Calendar, DollarSign, CheckCircle2, AlertTriangle, HelpCircle, Receipt } from "lucide-react";
+import { Button } from "@/components/ui/button"; // 👈 Add Button
+import { CreditCard, Calendar, DollarSign, CheckCircle2, AlertTriangle, HelpCircle, Receipt, Eye } from "lucide-react"; // 👈 Add Eye Icon
+import Link from "next/link"; // 👈 Add Link
 
 interface PaymentMeta {
     card_type?: string;
@@ -70,17 +72,15 @@ export default function PaymentHistoryClient({ transactions }: PaymentHistoryCli
                                 <TableHead>Settlement Date</TableHead>
                                 <TableHead>Amount (BDT)</TableHead>
                                 <TableHead>Status</TableHead>
+                                <TableHead className="text-right">Actions</TableHead> {/* 👈 Added header column */}
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {transactions.map((tx) => (
                                 <TableRow key={tx.id} className="hover:bg-muted/40 transition-colors">
-                                    {/* System tracking ID */}
                                     <TableCell className="font-mono text-xs font-semibold text-primary">
                                         {tx.transactionId}
                                     </TableCell>
-
-                                    {/* Mapped payment gateway source type */}
                                     <TableCell>
                                         <div className="flex items-center gap-2 text-sm font-medium">
                                             <CreditCard className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -89,13 +89,9 @@ export default function PaymentHistoryClient({ transactions }: PaymentHistoryCli
                                             </span>
                                         </div>
                                     </TableCell>
-
-                                    {/* Bank Authorization parameters mapping */}
                                     <TableCell className="font-mono text-xs text-muted-foreground">
                                         {tx.meta?.bank_tran_id || tx.bankTransactionId || "—"}
                                     </TableCell>
-
-                                    {/* Datetime parsing formatting parameters */}
                                     <TableCell className="text-muted-foreground text-sm">
                                         <div className="flex items-center gap-1.5">
                                             <Calendar className="h-3.5 w-3.5 shrink-0" />
@@ -103,24 +99,23 @@ export default function PaymentHistoryClient({ transactions }: PaymentHistoryCli
                                                 {new Date(tx.createdAt).toLocaleDateString('en-US', {
                                                     month: 'short',
                                                     day: 'numeric',
-                                                    year: 'numeric',
-                                                    hour: '2-digit',
-                                                    minute: '2-digit'
+                                                    year: 'numeric'
                                                 })}
                                             </span>
                                         </div>
                                     </TableCell>
-
-                                    {/* Currency processing output metric values */}
-                                    <TableCell className="font-bold text-sm tracking-tight">
-                                        <div className="flex items-center">
-                                            <DollarSign className="h-3.5 w-3.5 text-muted-foreground -mr-0.5" />
-                                            {tx.amount.toLocaleString()}.00
-                                        </div>
+                                    <TableCell className="font-bold text-sm">
+                                        ৳{tx.amount.toLocaleString()}
                                     </TableCell>
-
-                                    {/* Active State Badges indicators */}
                                     <TableCell>{getStatusBadge(tx.status)}</TableCell>
+                                    {/* 👁️ Details page route navigation toggle wrapper layout */}
+                                    <TableCell className="text-right">
+                                        <Link href={`/tenant-dashboard/payment-history/${tx.id}`}>
+                                            <Button size="sm" variant="ghost" className="h-8 gap-1">
+                                                <Eye className="h-3.5 w-3.5" /> Details
+                                            </Button>
+                                        </Link>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

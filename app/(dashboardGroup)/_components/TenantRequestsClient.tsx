@@ -5,11 +5,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CreditCard, Calendar, DollarSign, MapPin } from "lucide-react";
+import { CreditCard, Calendar, DollarSign, MapPin, Eye } from "lucide-react"; // 👈 Added Eye icon
 import { toast } from "sonner";
+import Link from "next/link"; // 👈 Added Link for navigation
 import { initiateSslPayment } from '../_actions/tenantAction';
 import ReviewDialog from './ReviewDialog';
-
 
 interface RentalRequestItem {
     id: string;
@@ -35,7 +35,6 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
             
             if (result?.success && result?.data?.gatewayUrl) {
                 toast.success("Payment session generated! Redirecting...", { id: toastId });
-                // 🌟 Smooth window navigation to sandbox.sslcommerz.com gateway entry
                 window.location.href = result.data.gatewayUrl;
             } else {
                 toast.error(result?.message || "Payment routing unavailable. Missing amount calculations.", { id: toastId });
@@ -97,24 +96,28 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
                             {/* Execution Badges */}
                             <TableCell>{getStatusBadge(item.status)}</TableCell>
 
-                            {/* Conditional Actions Triggering Grid */}
+                            {/* Actions Triggering Grid */}
                             <TableCell className="text-right">
-                                {/* Case A: Request Approved -> Display Checkout Button */}
-                                {item.status === "ACCEPTED" && (
-                                    <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700 text-white h-8 gap-1" disabled={isPending} onClick={() => handlePayNowClick(item.id)}>
-                                        <CreditCard className="h-3.5 w-3.5" /> Pay Now
-                                    </Button>
-                                )}
+                                <div className="flex items-center justify-end gap-2">
+                                    {/* 👁️ Global Details Navigation Trigger Button */}
+                                    <Link href={`/tenant-dashboard/rental-request/${item.id}`}>
+                                        <Button size="sm" variant="outline" className="h-8 gap-1">
+                                            <Eye className="h-3.5 w-3.5" /> Details
+                                        </Button>
+                                    </Link>
 
-                                {/* Case B: Request Completed -> Unlocks Review Dialogue */}
-                                {item.status === "COMPLETED" && (
-                                    <ReviewDialog propertyId={item.propertyId} propertyName={item.property.title} />
-                                )}
+                                    {/* Case A: Request Approved -> Display Checkout Button */}
+                                    {item.status === "ACCEPTED" && (
+                                        <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700 text-white h-8 gap-1" disabled={isPending} onClick={() => handlePayNowClick(item.id)}>
+                                            <CreditCard className="h-3.5 w-3.5" /> Pay Now
+                                        </Button>
+                                    )}
 
-                                {/* Case C: Pending/Rejected -> Display fallback placeholder text info string */}
-                                {(item.status === "PENDING" || item.status === "REJECTED") && (
-                                    <span className="text-xs text-muted-foreground italic pr-2">No actions available</span>
-                                )}
+                                    {/* Case B: Request Completed -> Unlocks Review Dialogue */}
+                                    {item.status === "COMPLETED" && (
+                                        <ReviewDialog propertyId={item.propertyId} propertyName={item.property.title} />
+                                    )}
+                                </div>
                             </TableCell>
                         </TableRow>
                     ))}

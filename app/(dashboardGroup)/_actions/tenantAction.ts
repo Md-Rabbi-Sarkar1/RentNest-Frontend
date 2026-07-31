@@ -78,3 +78,26 @@ export const submitPropertyReview = async (propertyId: string, rating: number, c
         return { success: false, message: error.message || "Failed to post review feedback." };
     }
 };
+
+
+export async function getSingleRentalRequest(rentalId: string) {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
+
+        // Matches your app.use('/api/rentals', rentalRouter) router layout config
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/rentals/${rentalId}`, {
+            cache: "no-store",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (error) {
+        console.error("Fetch request error tracking details:", error);
+        return null;
+    }
+}

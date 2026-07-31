@@ -8,8 +8,23 @@ export const ADMIN_SIDEBAR_ITEMS: ISidebarItem[] = [
         icon : LayoutDashboard
     },
     {
-        label : "My Posts",
-        href : "/admin-dashboard/my-posts",
+        label : "All Users",
+        href : "/admin-dashboard/all-users",
+        icon : FileText
+    },
+    {
+    label : "All Properties",
+    href : "/admin-dashboard/all-properties",
+    icon : FileText
+},
+    {
+        label : "All Rental Request",
+        href : "/admin-dashboard/all-rental-request",
+        icon : FileText
+    },
+    {
+        label : "category",
+        href : "/admin-dashboard/category",
         icon : FileText
     },
 ]
