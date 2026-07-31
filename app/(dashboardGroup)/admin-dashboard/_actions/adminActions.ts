@@ -116,3 +116,17 @@ export async function createCategoryAction(prevState: any, formData: FormData) {
         return { success: false, message: "Gateway error while creating property category." };
     }
 }
+
+// Add this inside app/admin-dashboard/_actions/adminActions.ts
+
+export async function getAdminCategoriesWithPropertiesAction() {
+    try {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/categories`, {
+            cache: "no-store"
+        });
+        if (!res.ok) return { success: false, data: [] };
+        return await res.json();
+    } catch (error) {
+        return { success: false, data: [] };
+    }
+}

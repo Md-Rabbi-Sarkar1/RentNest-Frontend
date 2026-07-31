@@ -1,9 +1,16 @@
 import React from "react";
 import { Grid2X2 } from "lucide-react";
+
+import { getAdminCategoriesWithPropertiesAction } from "../_actions/adminActions";
 import { CreateCategoryDialog } from "../_components/CreateCategoryDialog";
+import CategoryListManager from "../_components/CategoryListManager";
 
 
 export default async function AdminCategoryDashboardPage() {
+    // 🧠 Fetch real-time categories populated with properties array directly on the server
+    const res = await getAdminCategoriesWithPropertiesAction();
+    const categoriesData = res?.data || [];
+
     return (
         <div className="p-6 md:p-10 space-y-6 max-w-7xl mx-auto w-full">
             {/* Header Layout Banner Block */}
@@ -20,20 +27,14 @@ export default async function AdminCategoryDashboardPage() {
                     </div>
                 </div>
                 
-                {/* ➕ Category Modal Trigger */}
+                {/* ➕ Category Modal Trigger Dialog Component */}
                 <div className="shrink-0">
                     <CreateCategoryDialog />
                 </div>
             </div>
 
-            {/* Static layout card information display block */}
-            <div className="rounded-xl border border-dashed p-12 text-center max-w-xl mx-auto space-y-2 mt-6">
-                <Grid2X2 className="h-10 w-10 text-muted-foreground mx-auto" />
-                <h3 className="font-semibold text-lg">Ecosystem Structural Classifiers</h3>
-                <p className="text-muted-foreground text-sm">
-                    Categories established here will immediately manifest as classification selectors when Landlords publish new rental property posts.
-                </p>
-            </div>
+            {/* 🔄 Dynamic Category Toggling and Property Grid Layout Pane */}
+            <CategoryListManager initialCategories={categoriesData} />
         </div>
     );
 }
