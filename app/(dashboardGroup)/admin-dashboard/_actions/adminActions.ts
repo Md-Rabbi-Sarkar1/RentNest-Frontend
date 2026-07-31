@@ -82,3 +82,37 @@ export async function getAllRentalsAction() {
         return { success: false, data: [] };
     }
 }
+
+// Add this inside app/admin-dashboard/_actions/adminActions.ts
+
+// 1. Post New Category to /api/users/category
+export async function createCategoryAction(prevState: any, formData: FormData) {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
+
+        const name = formData.get("name")?.toString().trim();
+
+        if (!name) {
+            return { success: false, message: "Category name field cannot be empty." };
+        }
+
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/admin/category`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name })
+        });
+
+        const result = await res.json();
+        
+        if (result.success) {
+            revalidatePath("/admin-dashboard/category");
+        }
+        return result;
+    } catch (error) {
+        return { success: false, message: "Gateway error while creating property category." };
+    }
+}
