@@ -17,7 +17,7 @@ export const getRentalRequests = async () => {
                     }
                 }
     try {
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/landlord/requests`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/requests`, {
             headers: {
                 "Cookie": `accessToken=${accessToken}`
             },
@@ -38,7 +38,7 @@ export const updateRentalStatus = async (rentalId: string, status: "ACCEPTED" | 
 
     try {
         // 🌟 Targets http://localhost:5000/api/landlord/:id
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/landlord/${rentalId}`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/${rentalId}`, {
             method: "PATCH",
             headers: {
                 "Cookie": `accessToken=${accessToken}`,
@@ -51,7 +51,7 @@ export const updateRentalStatus = async (rentalId: string, status: "ACCEPTED" | 
         
         if (result.success) {
             // Clears cache and updates table data visually
-            revalidateTag("landlord-rentals",'max');
+            revalidateTag("landlord-rentals",'');
         }
         return result;
     } catch (error: any) {

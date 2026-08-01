@@ -7,7 +7,7 @@ export const deletePostAction = async (postId: string) => {
 
     try {
         // 🌟 Matches your Express endpoint: router.delete('/:postId')
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/posts/${postId}`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/posts/${postId}`, {
             method: "DELETE",
             headers: {
                 "Cookie": `accessToken=${accessToken}`,

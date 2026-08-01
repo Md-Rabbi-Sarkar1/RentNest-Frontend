@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider"; // 👈 Your exact file location
+import { ThemeProvider } from "@/components/theme-provider"; 
+import { Toaster } from "sonner"; // 👈 FIX 1: Import the Toaster container component
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,9 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        {/* The hotkey script initializes inside this provider safely */}
         <ThemeProvider>
           {children}
+          {/* 👈 FIX 2: Mount the toaster globally so it is visible on all pages */}
+          <Toaster position="top-right" richColors closeButton />
         </ThemeProvider>
       </body>
     </html>

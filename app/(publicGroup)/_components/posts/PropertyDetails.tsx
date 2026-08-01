@@ -70,29 +70,34 @@ export default function PropertyDetails({ data }: PropertyDetailsProps) {
    
     const [isPending, startTransition] = useTransition();
 const handleRentalRequest = () => {
-const toastId = toast.loading("Submitting your rental request...");
-startTransition(async () => {
-      try {
-        const result = await rentalRequest(data.id);
 
-        if (result?.success) {
-          toast.success("Request Sent! 🎉", {
-            id: toastId, // Smoothly replaces the loading spinner card
-            description: result.message || "Rental request completed successfully.",
-          });
-        } else {
-          toast.error("Request Failed", {
-            id: toastId,
-            description: result?.message || "The application rejected your booking.",
-          });
-        }
-      } catch (error) {
-        toast.error("Network Error", {
+startTransition(async () => {
+    // 1. Create the loading toast inside the transition scope
+    const toastId = toast.loading("Processing", {
+      description: "Submitting your rental request...",
+    });
+
+    try {
+      const result = await rentalRequest(data.id);
+
+      if (result?.success) {
+        toast.success("Request Sent! 🎉", {
+          id: toastId, // Now securely references the correct instance
+          description: result.message || "Rental request completed successfully.",
+        });
+      } else {
+        toast.error("Request Failed", {
           id: toastId,
-          description: "Failed to establish a network connection.",
+          description: result?.message || "The application rejected your booking.",
         });
       }
-    });
+    } catch (error) {
+      toast.error("Network Error", {
+        id: toastId,
+        description: "Failed to establish a network connection.",
+      });
+    }
+  });
 }
   return (
     <div className="container mx-auto max-w-6xl p-4 md:p-8">

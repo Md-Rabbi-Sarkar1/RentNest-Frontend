@@ -112,7 +112,7 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
                             name="imageUrl"
                             type="url"
                             defaultValue={post?.imageUrl ?? ""}
-                            placeholder="https://example.com"
+                            placeholder="https://unsplash.com only"
                         />
                     </div>
 

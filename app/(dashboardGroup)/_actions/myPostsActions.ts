@@ -51,11 +51,11 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
 
         // 3. Purge Next.js cache tags dynamically upon success
         if (result.success) {
-            revalidateTag("my-posts",'max');
+            revalidateTag("my-posts",'');
             if (result.data?.isPremium) {
-                revalidateTag("premium-posts",'max');
+                revalidateTag("premium-posts",'');
             } else {
-                revalidateTag("public-posts",'max');
+                revalidateTag("public-posts",'');
             }
         }
 
@@ -109,11 +109,11 @@ export const updatePost = async (postId: string, prevState: PostState, formData:
 
         // 3. Purge Next.js cache tags dynamically upon success
         if (result.success) {
-            revalidateTag("my-posts",'max');
+            revalidateTag("my-posts",'');
             if (result.data?.isPremium) {
-                revalidateTag("premium-posts",'max');
+                revalidateTag("premium-posts",'');
             } else {
-                revalidateTag("public-posts",'max');
+                revalidateTag("public-posts",'');
             }
         }
 

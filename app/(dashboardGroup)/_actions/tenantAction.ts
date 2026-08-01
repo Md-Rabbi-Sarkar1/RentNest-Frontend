@@ -15,7 +15,7 @@ export const getTenantRentalRequests = async () => {
         };
     }
     try {
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/rentals`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/rentals`, {
             headers: { "Cookie": `accessToken=${accessToken}` },
             cache: "no-cache",
             next: { tags: ["tenant-rentals"] }
@@ -38,7 +38,7 @@ export const initiateSslPayment = async (rentalRequestId: string) => {
         };
     }
     try {
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/payments/create/${rentalRequestId}`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/payments/create/${rentalRequestId}`, {
             method: "POST",
             headers: {
                 "Cookie": `accessToken=${accessToken}`,
@@ -63,7 +63,7 @@ export const submitPropertyReview = async (propertyId: string, rating: number, c
             };
         }
     try {
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/reviews/${propertyId}`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/reviews/${propertyId}`, {
             method: "POST",
             headers: {
                 "Cookie": `accessToken=${accessToken}`,
@@ -72,7 +72,7 @@ export const submitPropertyReview = async (propertyId: string, rating: number, c
             body: JSON.stringify({ propertyId, rating, comment })
         });
         const result = await res.json();
-        if (result.success) revalidateTag("tenant-rentals",'max');
+        if (result.success) revalidateTag("tenant-rentals",'');
         return result;
     } catch (error: any) {
         return { success: false, message: error.message || "Failed to post review feedback." };

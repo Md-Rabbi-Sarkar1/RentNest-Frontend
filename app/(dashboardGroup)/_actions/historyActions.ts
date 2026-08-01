@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 export const getPaymentHistoryAction = async () => {
     const accessToken = await isAccessTokenExist();
     try {
-        const res = await fetch(`${process.env.BACKEND_API_URL || 'http://localhost:5000'}/api/payments`, {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/payments`, {
             headers: { "Cookie": `accessToken=${accessToken}` },
             cache: "no-cache",
             next: { tags: ["tenant-payments"] }
