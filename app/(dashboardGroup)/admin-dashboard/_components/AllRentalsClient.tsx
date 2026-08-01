@@ -16,16 +16,16 @@ interface RentalRequestItem {
 }
 
 export default function AllRentalsClient({ rentals }: { rentals: RentalRequestItem[] }) {
-    
+
     const getStatusBadge = (status: string) => {
         switch (status) {
-            case "COMPLETED": 
+            case "COMPLETED":
                 return <Badge className="bg-emerald-500 text-white hover:bg-emerald-600">Paid & Finished</Badge>;
-            case "ACCEPTED": 
+            case "ACCEPTED":
                 return <Badge className="bg-blue-500 text-white hover:bg-blue-600">Approved / Unpaid</Badge>;
-            case "REJECTED": 
+            case "REJECTED":
                 return <Badge variant="destructive">Rejected</Badge>;
-            default: 
+            default:
                 return <Badge variant="secondary" className="bg-amber-100 text-amber-800">Pending</Badge>;
         }
     };
@@ -45,7 +45,7 @@ export default function AllRentalsClient({ rentals }: { rentals: RentalRequestIt
                 <TableBody>
                     {rentals.map((req) => (
                         <TableRow key={req.id} className="hover:bg-muted/40 transition-colors">
-                            {/* Linked Property Title */}
+
                             <TableCell>
                                 <div className="flex items-center gap-2 font-medium text-sm max-w-[260px] truncate">
                                     <Building className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -53,7 +53,7 @@ export default function AllRentalsClient({ rentals }: { rentals: RentalRequestIt
                                 </div>
                             </TableCell>
 
-                            {/* Tenant Demographics */}
+
                             <TableCell>
                                 <div className="flex flex-col text-sm">
                                     <span className="font-medium text-gray-700 flex items-center gap-1">
@@ -64,7 +64,7 @@ export default function AllRentalsClient({ rentals }: { rentals: RentalRequestIt
                                 </div>
                             </TableCell>
 
-                            {/* Scheduled Move-in Date */}
+
                             <TableCell className="text-muted-foreground text-sm">
                                 <div className="flex items-center gap-1.5">
                                     <Calendar className="h-3.5 w-3.5 shrink-0" />
@@ -78,12 +78,12 @@ export default function AllRentalsClient({ rentals }: { rentals: RentalRequestIt
                                 </div>
                             </TableCell>
 
-                            {/* Total Amount Value Parameters */}
+
                             <TableCell className="font-bold text-sm">
                                 {req.totalAmount ? `৳${req.totalAmount.toLocaleString()}` : "Pending Evaluation"}
                             </TableCell>
 
-                            {/* State Code Indicators */}
+
                             <TableCell>{getStatusBadge(req.status)}</TableCell>
                         </TableRow>
                     ))}

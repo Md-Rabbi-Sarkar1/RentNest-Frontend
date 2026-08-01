@@ -38,7 +38,7 @@ export function MyPostCard({ post }: MyPostCardProps) {
                             </Badge>
                         )}
                     </div>
-                    {/* Action Area for Editing/Deleting */}
+
                     <div className="flex items-center gap-1">
                         <PostFormDialog mode="edit" post={post} />
                         <Button variant="ghost" size="icon" className="text-destructive" onClick={handleDelete}>

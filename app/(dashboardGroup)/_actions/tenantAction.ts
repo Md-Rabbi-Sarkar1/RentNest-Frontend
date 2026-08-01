@@ -3,7 +3,7 @@ import { isAccessTokenExist } from "@/service/refreshToken";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-// 🌟 Fetches all rental requests for the current authenticated Tenant user
+
 export const getTenantRentalRequests = async () => {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value || null;
@@ -26,7 +26,7 @@ export const getTenantRentalRequests = async () => {
     }
 };
 
-// 🌟 Calls router.post('/create/:id') to generate the SSLCommerz initialization URL link
+
 export const initiateSslPayment = async (rentalRequestId: string) => {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value || null;
@@ -51,17 +51,17 @@ export const initiateSslPayment = async (rentalRequestId: string) => {
     }
 };
 
-// 🌟 Submits property feedback reviews to the database matching the propertyId string 
+
 export const submitPropertyReview = async (propertyId: string, rating: number, comment: string) => {
-        const cookieStore = await cookies();
-        const accessToken = cookieStore.get("accessToken")?.value || null;
-    
-        if (!accessToken) {
-            return {
-                success: false,
-                message: "User not logged in!"
-            };
-        }
+    const cookieStore = await cookies();
+    const accessToken = cookieStore.get("accessToken")?.value || null;
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: "User not logged in!"
+        };
+    }
     try {
         const res = await fetch(`${process.env.BACKEND_API_URL}/api/reviews/${propertyId}`, {
             method: "POST",
@@ -72,7 +72,7 @@ export const submitPropertyReview = async (propertyId: string, rating: number, c
             body: JSON.stringify({ propertyId, rating, comment })
         });
         const result = await res.json();
-        if (result.success) revalidateTag("tenant-rentals",'');
+        if (result.success) revalidateTag("tenant-rentals", '');
         return result;
     } catch (error: any) {
         return { success: false, message: error.message || "Failed to post review feedback." };
@@ -85,7 +85,7 @@ export async function getSingleRentalRequest(rentalId: string) {
         const cookieStore = await cookies();
         const token = cookieStore.get("accessToken")?.value;
 
-        // Matches your app.use('/api/rentals', rentalRouter) router layout config
+
         const res = await fetch(`${process.env.BACKEND_API_URL}/api/rentals/${rentalId}`, {
             cache: "no-store",
             headers: {

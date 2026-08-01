@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { IPost } from "@/lib/types";
+
 
 import { IPost } from "@/lib/types";
 import { MyPostCard } from "./MyPostCard";
@@ -7,7 +6,7 @@ import { getMyPost } from "../_actions/myPostsActions";
 
 
 export async function MyPostsList() {
-  const result =await getMyPost()
+  const result = await getMyPost()
 
   if (!result.success || !result.data?.length) {
     return (
@@ -19,7 +18,7 @@ export async function MyPostsList() {
 
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {result.data.map((post : IPost | any) => (
+      {result.data.map((post: IPost | any) => (
         <MyPostCard key={post.id} post={post} />
       ))}
     </div>

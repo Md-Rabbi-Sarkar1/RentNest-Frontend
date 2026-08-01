@@ -13,7 +13,7 @@ interface ErrorPageProps {
 
 export default function GlobalErrorPage({ error, reset }: ErrorPageProps) {
   useEffect(() => {
-    // 🪵 Log system failures to external metrics infrastructure (e.g. Sentry)
+   
     console.error("Next.js Pipeline Runtime Exception Caught:", error);
   }, [error]);
 

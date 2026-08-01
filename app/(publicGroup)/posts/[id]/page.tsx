@@ -1,5 +1,5 @@
 import { getPostById } from "../../-actions/getPostById";
- // Adjust this path based on where you save the component
+
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -11,13 +11,13 @@ interface DetailPageProps {
 }
 
 export default async function PostsDetailsPage({ params }: DetailPageProps) {
-  // 1. Safely await the URL parameters
+ 
   const { id } = await params;
 
-  // 2. Fetch data from your server action
+ 
   const result = await getPostById(id);
 
-  // 3. Handle Error/Not Found cases safely
+  
   if (!result || !result.data) {
     return (
       <div className="container mx-auto max-w-xl p-6 mt-12">
@@ -37,7 +37,7 @@ export default async function PostsDetailsPage({ params }: DetailPageProps) {
     );
   }
 
-  // 4. Pass the validated data directly into your design layout
+  
   return (
     <main className="min-h-screen bg-background py-6">
       <PropertyDetails data={result.data} />

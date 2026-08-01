@@ -11,7 +11,7 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Pipeline logging tracker for application monitoring
+   
     console.error("RentNest Core Action Failure Error Logged:", error);
   }, [error]);
 

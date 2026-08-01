@@ -32,7 +32,7 @@ export default function AllPropertiesClient({ properties }: { properties: Proper
                 <TableBody>
                     {properties.map((item) => (
                         <TableRow key={item.id} className="hover:bg-muted/40 transition-colors">
-                            {/* Title & Address */}
+
                             <TableCell>
                                 <div className="flex flex-col space-y-0.5">
                                     <span className="font-semibold text-sm max-w-[280px] truncate">{item.title}</span>
@@ -43,7 +43,7 @@ export default function AllPropertiesClient({ properties }: { properties: Proper
                                 </div>
                             </TableCell>
 
-                            {/* Landlord Contact Info */}
+
                             <TableCell>
                                 <div className="flex flex-col text-sm">
                                     <span className="font-medium text-gray-700 flex items-center gap-1">
@@ -54,7 +54,7 @@ export default function AllPropertiesClient({ properties }: { properties: Proper
                                 </div>
                             </TableCell>
 
-                            {/* Property Category */}
+
                             <TableCell>
                                 <Badge variant="outline" className="gap-1 font-medium bg-secondary/10">
                                     <Tag className="h-3 w-3 text-muted-foreground" />
@@ -62,7 +62,7 @@ export default function AllPropertiesClient({ properties }: { properties: Proper
                                 </Badge>
                             </TableCell>
 
-                            {/* Marketplace Visibility Badges */}
+
                             <TableCell>
                                 <div className="flex items-center gap-1.5">
                                     <Badge className={item.isAvailable ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground"}>

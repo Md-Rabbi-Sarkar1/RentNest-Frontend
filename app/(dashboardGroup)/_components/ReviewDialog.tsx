@@ -53,7 +53,7 @@ export default function ReviewDialog({ propertyId, propertyName }: ReviewDialogP
                     <DialogDescription>Share your experience staying at <span className="font-semibold text-foreground">{propertyName}</span>.</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 py-2">
-                    {/* Star Selection Row */}
+                    
                     <div className="space-y-2">
                         <Label>Rating Score</Label>
                         <div className="flex items-center gap-1.5">
@@ -64,7 +64,7 @@ export default function ReviewDialog({ propertyId, propertyName }: ReviewDialogP
                             ))}
                         </div>
                     </div>
-                    {/* Feedback Input text area */}
+                    
                     <div className="space-y-2">
                         <Label htmlFor="comment">Your Comment</Label>
                         <Textarea id="comment" placeholder="What did you like or dislike about the property/landlord?" value={comment} onChange={(e) => setComment(e.target.value)} required className="min-h-24" />

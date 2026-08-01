@@ -1,23 +1,23 @@
 "use client";
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-// 👈 FIX 1: Added Menu icon for the hamburger button
-import { LayoutDashboard, LogOut, Settings, User, Sun, Moon, Menu } from "lucide-react"; 
+
+import { LayoutDashboard, LogOut, Settings, User, Sun, Moon, Menu } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
-import { useTheme } from "next-themes"; 
-import { useEffect, useState } from "react"; 
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-// 👈 FIX 2: Import Sheet components for the mobile overlay drawer
+
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 import { NavbarProps } from "@/lib/types";
@@ -39,10 +39,10 @@ const userMenuItems = [
 
 export function Navbar({ user }: NavbarProps) {
   const router = useRouter();
-  
-  const { resolvedTheme, setTheme } = useTheme(); 
-  const [mounted, setMounted] = useState(false); 
-  // 👈 FIX 3: Local state management to close the mobile menu on item clicks
+
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -65,13 +65,13 @@ export function Navbar({ user }: NavbarProps) {
       return;
     }
     if (action === "logout") {
-        await logout();
-        toast.success("User Logged Out Successfully!");
-        router.push("/login");
+      await logout();
+      toast.success("User Logged Out Successfully!");
+      router.push("/login");
     }
     if (action === "profile") {
-        router.push("/profile");
-        return;
+      router.push("/profile");
+      return;
     }
   };
 
@@ -79,10 +79,10 @@ export function Navbar({ user }: NavbarProps) {
     <nav className="border-b border-border bg-background transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          
-          {/* Left Side: Mobile Burger Menu + Logo */}
+
+
           <div className="flex items-center gap-2">
-            {/* 👈 FIX 4: Responsive Mobile Sheet Side Drawer View */}
+
             <div className="md:hidden">
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
@@ -111,13 +111,13 @@ export function Navbar({ user }: NavbarProps) {
               </Sheet>
             </div>
 
-            {/* Logo */}
+
             <Link href="/" className="shrink-0">
               <span className="text-2xl font-bold text-primary">RENTNEST</span>
             </Link>
           </div>
 
-          {/* Nav Links (Desktop Only Layout Grid Framework) */}
+
           <div className="hidden md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:gap-8">
             {navItems.map((item) => (
               <Link
@@ -130,10 +130,10 @@ export function Navbar({ user }: NavbarProps) {
             ))}
           </div>
 
-          {/* Actions Menu Rack */}
+
           <div className="flex items-center gap-4">
-            
-            {/* Shadcn UI Dark/Light Toggler Button */}
+
+
             <Button
               variant="ghost"
               size="icon"
@@ -150,7 +150,7 @@ export function Navbar({ user }: NavbarProps) {
               <span className="sr-only">Toggle theme</span>
             </Button>
 
-            {/* User Dropdown */}
+
             {user?.success && profileData ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

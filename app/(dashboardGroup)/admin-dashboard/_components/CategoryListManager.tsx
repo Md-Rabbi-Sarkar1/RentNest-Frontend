@@ -17,11 +17,11 @@ interface Property {
 interface CategoryItem {
     id: number;
     name: string;
-    properties?: Property[]; // Made optional for safety schema fallback
+    properties?: Property[];
 }
 
 export default function CategoryListManager({ initialCategories }: { initialCategories: CategoryItem[] }) {
-    // 💡 FIXED: Accurately read index position [0] item ID from the incoming array list
+
     const [activeTabId, setActiveTabId] = useState<number | null>(
         initialCategories && initialCategories.length > 0 ? initialCategories[0].id : null
     );
@@ -30,7 +30,7 @@ export default function CategoryListManager({ initialCategories }: { initialCate
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start mt-4">
-            {/* Left Column Navigation List */}
+
             <div className="space-y-2 lg:col-span-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-2">Ecosystem Filters</span>
                 <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible gap-2 pb-2 lg:pb-0">
@@ -38,19 +38,18 @@ export default function CategoryListManager({ initialCategories }: { initialCate
                         <button
                             key={cat.id}
                             onClick={() => setActiveTabId(cat.id)}
-                            className={`w-full text-left flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all border cursor-pointer shrink-0 lg:shrink select-none ${
-                                activeTabId === cat.id
+                            className={`w-full text-left flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all border cursor-pointer shrink-0 lg:shrink select-none ${activeTabId === cat.id
                                     ? "bg-purple-50 border-purple-200 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900"
                                     : "bg-card border-border hover:bg-muted text-foreground"
-                            }`}
+                                }`}
                         >
                             <div className="flex items-center gap-2 truncate">
                                 <Tag className="h-4 w-4 shrink-0 opacity-70" />
                                 <span className="truncate uppercase tracking-wide text-xs">{cat.name}</span>
                             </div>
-                            {/* 💡 FIXED: Strictly compute the layout array length fallback condition */}
-                            <Badge 
-                                variant={activeTabId === cat.id ? "default" : "secondary"} 
+
+                            <Badge
+                                variant={activeTabId === cat.id ? "default" : "secondary"}
                                 className="shrink-0 text-[10px] px-1.5 h-5"
                             >
                                 {Array.isArray(cat.properties) ? cat.properties.length : 0}
@@ -60,7 +59,7 @@ export default function CategoryListManager({ initialCategories }: { initialCate
                 </div>
             </div>
 
-            {/* Right Column Mapped Properties Render Pane */}
+
             <div className="lg:col-span-3 space-y-4">
                 {activeCategory ? (
                     <>
@@ -91,13 +90,13 @@ export default function CategoryListManager({ initialCategories }: { initialCate
                                     </CardContent>
                                     <div className="p-3 bg-muted/30 border-t flex justify-between items-center text-xs">
                                         <span className="font-bold text-primary">৳{post.price.toLocaleString()} / mo</span>
-                                        <span className="text-muted-foreground font-mono text-[10px] truncate max-w-[120px]">ID: {post.id.slice(0,8)}</span>
+                                        <span className="text-muted-foreground font-mono text-[10px] truncate max-w-[120px]">ID: {post.id.slice(0, 8)}</span>
                                     </div>
                                 </Card>
                             ))}
                         </div>
 
-                        {/* Empty internal properties classification layout handler */}
+
                         {(!activeCategory.properties || activeCategory.properties.length === 0) && (
                             <div className="text-center py-16 border border-dashed rounded-xl space-y-2 bg-card">
                                 <Home className="h-8 w-8 text-muted-foreground/30 mx-auto" />

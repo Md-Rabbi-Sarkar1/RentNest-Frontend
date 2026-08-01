@@ -12,22 +12,22 @@ export function HeroBanner() {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchLocation.trim()) return;
-    // Redirect cleanly into your existing property lists page with query params
+    
     window.location.href = `/posts?search=${encodeURIComponent(searchLocation)}`;
   };
 
   return (
     <div className="relative w-full overflow-hidden bg-background pt-8 pb-16 md:pt-16 md:pb-24 transition-colors duration-200">
       
-      {/* Decorative Radial Background Accent Mesh Gradient */}
+      
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(99,102,241,0.12),transparent)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(99,102,241,0.08),transparent)]" />
       
-      {/* Subdued Tech Grid Accents */}
+     
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 md:space-y-12">
         
-        {/* Core Value Pitch Header */}
+      
         <div className="space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 animate-fade-in">
             <Home className="h-3.5 w-3.5" /> Next-Gen Property Management
@@ -40,7 +40,7 @@ export function HeroBanner() {
           </p>
         </div>
 
-        {/* Global Live Embedded Context Bar Form Grid */}
+        
         <div className="max-w-2xl mx-auto">
           <form 
             onSubmit={handleSearchSubmit} 
@@ -62,7 +62,7 @@ export function HeroBanner() {
           </form>
         </div>
 
-        {/* Call to Actions Grid Links */}
+        
         <div className="flex flex-wrap justify-center items-center gap-4">
           <Link href="/posts">
             <Button size="lg" className="font-semibold gap-2 py-6 px-6 cursor-pointer">
@@ -76,7 +76,7 @@ export function HeroBanner() {
           </Link>
         </div>
 
-        {/* Real-time Dynamic Platform Statistics Counter Row */}
+       
         <div className="border-t border-muted pt-8 md:pt-12 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
           
           <div className="flex items-center gap-3">

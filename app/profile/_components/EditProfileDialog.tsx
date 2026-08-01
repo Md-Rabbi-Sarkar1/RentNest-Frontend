@@ -23,7 +23,7 @@ export function EditProfileDialog({ currentProfile }: { currentProfile: any }) {
     }
   }, [state]);
 
-  // Safe extractions based on your exact layout nesting structures
+  
   const initialName = currentProfile?.name || "";
   const initialPhoto = currentProfile?.profile?.profilePhoto || currentProfile?.profilePhoto || "";
   const initialBio = currentProfile?.profile?.bio || "";

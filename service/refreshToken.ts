@@ -48,7 +48,7 @@ export const isAccessTokenExist = async () =>{
                 const decodedRefreshToken = refreshToken ? jwtUtils.verifyToken(refreshToken, process.env.JWT_REFRESH_SECRET as string) : null;
                     if(!decodedAccessToken?.success && decodedRefreshToken?.success){
                         const result = await getNewAccessToken();
-                        console.log(result)
+                       
                         if(result.success){
                             const newAccessToken = result.data.accessToken;
                 

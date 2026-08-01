@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-20 space-y-16">
       
-      {/* Intro Hero Split Row */}
+      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-6">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
@@ -34,7 +34,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Core Values Section Grid */}
+     
       <div className="space-y-8 border-t pt-12">
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <h2 className="text-3xl font-bold tracking-tight">Our Core Mission Values</h2>

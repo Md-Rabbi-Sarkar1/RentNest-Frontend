@@ -24,7 +24,7 @@ export default function ContactPage() {
     }
 
     startTransition(async () => {
-      // Simulate real server delivery network latencies beautifully
+     
       await new Promise((resolve) => setTimeout(resolve, 1200));
       toast.success("Support ticket logged! We will email you back within 24 hours. 🎉");
       setFormData({ name: "", email: "", message: "" });
@@ -35,7 +35,7 @@ export default function ContactPage() {
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         
-        {/* Help Column Deck */}
+       
         <div className="lg:col-span-1 space-y-6">
           <div className="space-y-3">
             <h1 className="text-4xl font-extrabold tracking-tight">Get in Touch</h1>
@@ -60,7 +60,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Input Form Panel */}
+       
         <Card className="lg:col-span-2 shadow-md border-muted/70">
           <CardHeader>
             <CardTitle>Send a Message</CardTitle>

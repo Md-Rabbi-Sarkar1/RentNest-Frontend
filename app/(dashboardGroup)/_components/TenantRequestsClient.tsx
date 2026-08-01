@@ -5,9 +5,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CreditCard, Calendar, DollarSign, MapPin, Eye } from "lucide-react"; // 👈 Added Eye icon
+import { CreditCard, Calendar, DollarSign, MapPin, Eye } from "lucide-react";
 import { toast } from "sonner";
-import Link from "next/link"; // 👈 Added Link for navigation
+import Link from "next/link";
 import { initiateSslPayment } from '../_actions/tenantAction';
 import ReviewDialog from './ReviewDialog';
 
@@ -32,7 +32,7 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
 
         startTransition(async () => {
             const result = await initiateSslPayment(requestId);
-            
+
             if (result?.success && result?.data?.gatewayUrl) {
                 toast.success("Payment session generated! Redirecting...", { id: toastId });
                 window.location.href = result.data.gatewayUrl;
@@ -66,7 +66,7 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
                 <TableBody>
                     {requests.map((item) => (
                         <TableRow key={item.id} className="hover:bg-muted/40 transition-colors">
-                            {/* Property Info Title */}
+
                             <TableCell>
                                 <div className="flex flex-col space-y-0.5">
                                     <span className="font-semibold text-sm max-w-[240px] truncate">{item.property.title}</span>
@@ -77,7 +77,7 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
                                 </div>
                             </TableCell>
 
-                            {/* Start Date Selection */}
+
                             <TableCell>
                                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                                     <Calendar className="h-3.5 w-3.5" />
@@ -85,7 +85,7 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
                                 </div>
                             </TableCell>
 
-                            {/* Value Cost Parameters */}
+
                             <TableCell>
                                 <div className="flex items-center text-sm font-bold tracking-tight">
                                     <DollarSign className="h-3.5 w-3.5 text-muted-foreground -mr-0.5" />
@@ -93,27 +93,27 @@ export default function TenantRequestsClient({ requests }: TenantRequestsProps) 
                                 </div>
                             </TableCell>
 
-                            {/* Execution Badges */}
+
                             <TableCell>{getStatusBadge(item.status)}</TableCell>
 
-                            {/* Actions Triggering Grid */}
+
                             <TableCell className="text-right">
                                 <div className="flex items-center justify-end gap-2">
-                                    {/* 👁️ Global Details Navigation Trigger Button */}
+
                                     <Link href={`/tenant-dashboard/rental-request/${item.id}`}>
                                         <Button size="sm" variant="outline" className="h-8 gap-1">
                                             <Eye className="h-3.5 w-3.5" /> Details
                                         </Button>
                                     </Link>
 
-                                    {/* Case A: Request Approved -> Display Checkout Button */}
+
                                     {item.status === "ACCEPTED" && (
                                         <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700 text-white h-8 gap-1" disabled={isPending} onClick={() => handlePayNowClick(item.id)}>
                                             <CreditCard className="h-3.5 w-3.5" /> Pay Now
                                         </Button>
                                     )}
 
-                                    {/* Case B: Request Completed -> Unlocks Review Dialogue */}
+
                                     {item.status === "COMPLETED" && (
                                         <ReviewDialog propertyId={item.propertyId} propertyName={item.property.title} />
                                     )}

@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 import { IPost } from "@/lib/types";
 import { getPublicPosts } from "../../-actions/getPublicPosts";
 import { PostsCard } from "./PostsCard";
 
-// import { IPost } from "@/lib/types";
+
 
 export async function PublicPostsList({
   searchParams,
@@ -13,7 +13,7 @@ export async function PublicPostsList({
 }) {
   const query = await searchParams;
   const result = await getPublicPosts({query})
-  console.log(result)
+
   if (!result.success || !result.data?.length) {
     return (
       <p className="py-12 text-center text-muted-foreground">

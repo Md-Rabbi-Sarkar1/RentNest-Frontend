@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client"
 
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,7 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
 
         if (state.success) {
             toast.success(state.message || (mode === "edit" ? "Post updated successfully" : "Post created successfully"));
-            // eslint-disable-next-line react-hooks/set-state-in-effect
+
             setOpen(false);
         } else {
             toast.error(state.message || "Something went wrong");
@@ -64,13 +64,13 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
                     </DialogTitle>
                 </DialogHeader>
                 <form action={formAction} className="space-y-4">
-                    {/* 1. Title Input (String) */}
+
                     <div className="space-y-2">
                         <Label htmlFor="title">Title</Label>
                         <Input id="title" name="title" defaultValue={post?.title} placeholder="Cozy Apartment..." required />
                     </div>
 
-                    {/* 2. Description Textarea (String) */}
+
                     <div className="space-y-2">
                         <Label htmlFor="description">Description</Label>
                         <Textarea
@@ -83,28 +83,28 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
                         />
                     </div>
 
-                    {/* 3. Address Input (String) */}
+
                     <div className="space-y-2">
                         <Label htmlFor="address">Address</Label>
                         <Input id="address" name="address" defaultValue={post?.address} placeholder="123 Main St, New York" required />
                     </div>
 
-                    {/* 4. Price Input (Float - HTML5 step attribute ensures decimals work) */}
+
                     <div className="space-y-2">
                         <Label htmlFor="price">Price ($)</Label>
-                        <Input 
-                            id="price" 
-                            name="price" 
-                            type="number" 
-                            step="0.01" 
+                        <Input
+                            id="price"
+                            name="price"
+                            type="number"
+                            step="0.01"
                             min="0"
-                            defaultValue={post?.price} 
-                            placeholder="1200.00" 
-                            required 
+                            defaultValue={post?.price}
+                            placeholder="1200.00"
+                            required
                         />
                     </div>
 
-                    {/* 5. Image URL Input (String?) */}
+
                     <div className="space-y-2">
                         <Label htmlFor="imageUrl">Image URL</Label>
                         <Input
@@ -116,7 +116,7 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
                         />
                     </div>
 
-                    {/* 6. Premium Checkbox */}
+
                     <Label className="flex items-center gap-2 font-normal cursor-pointer pt-2">
                         <Checkbox id="isPremium" name="isPremium" defaultChecked={post?.isPremium} value="true" />
                         <span>Mark as premium content listing</span>

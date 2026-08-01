@@ -36,14 +36,14 @@ export function CreateCategoryDialog() {
             <Tag className="size-5 text-primary" /> Create Structural Category
           </DialogTitle>
         </DialogHeader>
-        
+
         <form action={action} className="space-y-4 pt-4">
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-muted-foreground">Category Name</label>
-            <Input 
-              name="name" 
-              placeholder="e.g. Modern Apartment, Luxury Duplex" 
-              required 
+            <Input
+              name="name"
+              placeholder="e.g. Modern Apartment, Luxury Duplex"
+              required
             />
           </div>
 

@@ -69,9 +69,9 @@ export default function AllUsersClient({ users }: { users: UserItem[] }) {
                                 })}
                             </TableCell>
                             <TableCell>
-                                <Badge 
-                                    className={account.activeStatus === "ACTIVE" 
-                                        ? "bg-emerald-500 text-white hover:bg-emerald-600" 
+                                <Badge
+                                    className={account.activeStatus === "ACTIVE"
+                                        ? "bg-emerald-500 text-white hover:bg-emerald-600"
                                         : "bg-destructive text-white hover:bg-destructive/90"}
                                 >
                                     {account.activeStatus}
@@ -81,11 +81,10 @@ export default function AllUsersClient({ users }: { users: UserItem[] }) {
                                 <button
                                     disabled={isPending || account.role === "ADMIN"}
                                     onClick={() => handleStatusChange(account.id, account.activeStatus)}
-                                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold tracking-tight transition-all border cursor-pointer select-none disabled:opacity-40 disabled:pointer-events-none ${
-                                        account.activeStatus === "ACTIVE"
+                                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold tracking-tight transition-all border cursor-pointer select-none disabled:opacity-40 disabled:pointer-events-none ${account.activeStatus === "ACTIVE"
                                             ? "bg-red-50 text-red-700 border-red-200 hover:bg-red-100"
                                             : "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100"
-                                    }`}
+                                        }`}
                                 >
                                     {account.activeStatus === "ACTIVE" ? (
                                         <>

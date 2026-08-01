@@ -12,8 +12,8 @@ const DashboardLayout = async (
     }
 ) => {
   const user = await getMe();
-console.log(user)
-  // 🛡️ Safe check matching your exact response schema layout
+
+ 
   if (!user || !user.success || !user.data || !user.data.profile) {
       redirect("/login");
   }

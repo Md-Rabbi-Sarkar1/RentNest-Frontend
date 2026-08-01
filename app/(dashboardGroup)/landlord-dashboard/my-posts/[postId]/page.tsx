@@ -4,7 +4,7 @@ import { ArrowLeftIcon, SparklesIcon, CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostFormDialog } from "@/app/(dashboardGroup)/_components/PostFormDialog";
-import { cookies } from "next/headers"; // 👈 Import cookies
+import { cookies } from "next/headers"; 
 
 async function getSinglePost(postId: string) {
     const cookieStore = await cookies();
@@ -13,7 +13,7 @@ async function getSinglePost(postId: string) {
     const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/${postId}`, {
         cache: "no-store",
         headers: {
-            // 👈 Forward token so landlord API doesn't fail
+           
             "Authorization": `Bearer ${token}`, 
             "Content-Type": "application/json"
         }
@@ -23,7 +23,7 @@ async function getSinglePost(postId: string) {
 }
 
 interface PageProps {
-    params: Promise<{ postId: string }>; // 👈 Matches folder [postId] perfectly
+    params: Promise<{ postId: string }>; 
 }
 
 export default async function PostDetailPage({ params }: PageProps) {

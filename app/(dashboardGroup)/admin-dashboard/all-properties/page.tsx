@@ -9,7 +9,7 @@ export default async function AdminAllPropertiesPage() {
 
     return (
         <div className="p-6 md:p-10 space-y-6 max-w-7xl mx-auto w-full">
-            {/* Upper Dashboard Header */}
+           
             <div className="flex items-center gap-3 border-b pb-5">
                 <div className="p-2.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 rounded-xl">
                     <Building2 className="h-6 w-6" />
@@ -22,7 +22,7 @@ export default async function AdminAllPropertiesPage() {
                 </div>
             </div>
 
-            {/* Content List Table Component */}
+            
             <AllPropertiesClient properties={res?.data || []} />
         </div>
     );

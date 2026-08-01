@@ -18,7 +18,7 @@ export default function ServicesPage() {
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-20 space-y-16">
       
-      {/* Header Panel */}
+     
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <Badge variant="outline" className="px-3 py-1 text-primary bg-primary/5">Platform Features</Badge>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">All-In-One Property Utilities</h1>
@@ -27,7 +27,7 @@ export default function ServicesPage() {
         </p>
       </div>
 
-      {/* Tenant Matrix Row */}
+     
       <div className="space-y-6">
         <h2 className="text-2xl font-bold tracking-tight text-indigo-500 flex items-center gap-2">
           <CheckCircle2 className="h-5 w-5" /> Built for Renters & Tenants
@@ -50,7 +50,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* Landlord Matrix Row */}
+     
       <div className="space-y-6 border-t pt-12">
         <h2 className="text-2xl font-bold tracking-tight text-amber-500 flex items-center gap-2">
           <CheckCircle2 className="h-5 w-5" /> Built for Landlords & Managers

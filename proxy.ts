@@ -27,7 +27,7 @@ export async function proxy(request: NextRequest) {
     if(!decodedAccessToken?.success && decodedRefreshToken?.success){
         
         const result = await getNewAccessToken();
-        console.log(result)
+        
         if(result.success){
             const newAccessToken = result.data.accessToken;
 
@@ -52,7 +52,7 @@ export async function proxy(request: NextRequest) {
 
     if(decodedAccessToken?.success && decodedAccessToken.data){
         userRole = (decodedAccessToken.data as JwtPayload).role;
-        // console.log(userRole)
+        
     }
 
     if(accessToken && AUTH_ROUTES.includes(pathname)){

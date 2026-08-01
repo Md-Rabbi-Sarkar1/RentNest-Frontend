@@ -16,7 +16,7 @@ export async function updateProfileAction(prevState: any, formData: FormData) {
       return { success: false, message: "Full Name is required." };
     }
 
-    // This perfectly matches your backend destructuring: const { name, profilePhoto, bio } = payload;
+    
     const payload = { 
       name, 
       profilePhoto, 

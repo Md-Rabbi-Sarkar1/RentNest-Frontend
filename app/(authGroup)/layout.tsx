@@ -6,13 +6,13 @@ import { getMe } from "@/service/getMe";
 
 
 const AuthGroupLayout = async (
-    { children }: { children: React.ReactNode }) => {
+  { children }: { children: React.ReactNode }) => {
 
-         const user = await getMe()
+  const user = await getMe()
   return <div>
-    <Navbar user={user}/>
+    <Navbar user={user} />
     {children}
-  
+
   </div>;
 };
 

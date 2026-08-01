@@ -1,16 +1,16 @@
 "use client"
 import React, { useTransition } from 'react';
 import Image from 'next/image';
-import { 
-  MapPin, 
-  DollarSign, 
-  Calendar, 
-  User, 
-  Mail, 
-  CheckCircle2, 
-  XCircle, 
-  Star, 
-  Crown 
+import {
+  MapPin,
+  DollarSign,
+  Calendar,
+  User,
+  Mail,
+  CheckCircle2,
+  XCircle,
+  Star,
+  Crown
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -50,64 +50,64 @@ interface PropertyDetailsProps {
 }
 
 export default function PropertyDetails({ data }: PropertyDetailsProps) {
-  // Format dates cleanly
+
   const formattedDate = new Date(data.createdAt).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   });
 
-  // Fallback for avatar initials
+
   const landlordInitials = data.landlord?.name
     ? data.landlord.name.split(' ').map((n) => n[0]).join('').toUpperCase()
     : 'U';
 
-  // Strict check to filter out literal dummy strings like "imageUrl" or empty strings
-  const isValidImage = 
-    data.imageUrl && 
-    data.imageUrl !== 'imageUrl' && 
+
+  const isValidImage =
+    data.imageUrl &&
+    data.imageUrl !== 'imageUrl' &&
     (data.imageUrl.startsWith('/') || data.imageUrl.startsWith('http'));
-   
-    const [isPending, startTransition] = useTransition();
-const handleRentalRequest = () => {
 
-startTransition(async () => {
-    // 1. Create the loading toast inside the transition scope
-    const toastId = toast.loading("Processing", {
-      description: "Submitting your rental request...",
-    });
+  const [isPending, startTransition] = useTransition();
+  const handleRentalRequest = () => {
 
-    try {
-      const result = await rentalRequest(data.id);
+    startTransition(async () => {
 
-      if (result?.success) {
-        toast.success("Request Sent! 🎉", {
-          id: toastId, // Now securely references the correct instance
-          description: result.message || "Rental request completed successfully.",
-        });
-      } else {
-        toast.error("Request Failed", {
+      const toastId = toast.loading("Processing", {
+        description: "Submitting your rental request...",
+      });
+
+      try {
+        const result = await rentalRequest(data.id);
+
+        if (result?.success) {
+          toast.success("Request Sent! 🎉", {
+            id: toastId,
+            description: result.message || "Rental request completed successfully.",
+          });
+        } else {
+          toast.error("Request Failed", {
+            id: toastId,
+            description: result?.message || "The application rejected your booking.",
+          });
+        }
+      } catch (error) {
+        toast.error("Network Error", {
           id: toastId,
-          description: result?.message || "The application rejected your booking.",
+          description: "Failed to establish a network connection.",
         });
       }
-    } catch (error) {
-      toast.error("Network Error", {
-        id: toastId,
-        description: "Failed to establish a network connection.",
-      });
-    }
-  });
-}
+    });
+  }
   return (
     <div className="container mx-auto max-w-6xl p-4 md:p-8">
-      {/* Main Layout Grid */}
+
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        
-        {/* Left Column: Image & Core Details */}
+
+
         <div className="space-y-6 lg:col-span-2">
-          
-          {/* Visual Header / Image Container */}
+
+
           <div className="relative aspect-video w-full overflow-hidden rounded-xl border bg-muted shadow-sm">
             {isValidImage ? (
               <Image
@@ -122,8 +122,8 @@ startTransition(async () => {
                 <p className="text-sm font-medium">No preview image available</p>
               </div>
             )}
-            
-            {/* Overlay Badges */}
+
+
             <div className="absolute left-4 top-4 flex gap-2">
               {data.isPremium && (
                 <Badge className="bg-amber-500 text-white hover:bg-amber-600 gap-1 shadow-md">
@@ -144,7 +144,7 @@ startTransition(async () => {
             </div>
           </div>
 
-          {/* Listing Information Card */}
+
           <Card>
             <CardHeader className="space-y-4">
               <div className="space-y-2">
@@ -157,11 +157,11 @@ startTransition(async () => {
                 </div>
               </div>
             </CardHeader>
-            
+
             <CardContent className="space-y-6">
               <Separator />
-              
-              {/* Description Section */}
+
+
               <div className="space-y-2">
                 <h3 className="font-semibold text-lg">About this property</h3>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -171,7 +171,7 @@ startTransition(async () => {
 
               <Separator />
 
-              {/* Dynamic Metadata Fields */}
+
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                 <div className="flex flex-col gap-1 p-3 rounded-lg bg-secondary/40">
                   <span className="text-xs text-muted-foreground font-medium">Listed on</span>
@@ -192,8 +192,8 @@ startTransition(async () => {
                   <span className="text-xs text-muted-foreground font-medium">Reviews</span>
                   <div className="flex items-center gap-1.5 text-sm font-semibold">
                     <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
-                    {data.reviews && data.reviews.length > 0 
-                      ? `${data.reviews.length} total` 
+                    {data.reviews && data.reviews.length > 0
+                      ? `${data.reviews.length} total`
                       : "No reviews yet"}
                   </div>
                 </div>
@@ -202,10 +202,10 @@ startTransition(async () => {
           </Card>
         </div>
 
-        {/* Right Column: Pricing & Landlord Actions Sticky Sidebar */}
+
         <div className="space-y-6 lg:sticky lg:top-8 h-fit">
-          
-          {/* Action / Pricing Box */}
+
+
           <Card className="shadow-lg border-primary/20">
             <CardHeader>
               <CardDescription>Price</CardDescription>
@@ -216,11 +216,11 @@ startTransition(async () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button 
-                className="w-full text-base font-medium py-6" 
-                size="lg" 
+              <Button
+                className="w-full text-base font-medium py-6"
+                size="lg"
                 disabled={!data.isAvailable}
-                onClick={data.isAvailable ? handleRentalRequest : undefined} 
+                onClick={data.isAvailable ? handleRentalRequest : undefined}
               >
                 {data.isAvailable ? "Rental Request" : "Currently Unavailable"}
               </Button>
@@ -231,7 +231,7 @@ startTransition(async () => {
             </CardContent>
           </Card>
 
-          {/* Landlord Info Profile Box */}
+
           <Card>
             <CardHeader>
               <CardTitle className="text-sm font-semibold text-muted-foreground tracking-wider uppercase">

@@ -13,17 +13,7 @@ export function PostsSearchBar() {
     const debouncedReference = useRef<ReturnType<typeof setTimeout> | null>(null)
 
     const handleChange = (value : string) => {
-        // console.log(value);
 
-        // const params = new URLSearchParams()
-
-        // if(value){
-        //     params.set("searchTerm", value)
-        // }else{
-        //     params.delete("searchTerm")
-        // }
-
-        // router.replace(`${pathname}?${params.toString()}`)
 
 
         if(debouncedReference.current){
@@ -32,7 +22,7 @@ export function PostsSearchBar() {
 
 
         debouncedReference.current = setTimeout(() =>{
-            console.log(value);
+            
 
             const params = new URLSearchParams();
 

@@ -4,9 +4,9 @@ export const getPostById =async (id:string)=>{
     const cookieStore = await cookies();
         
             const accessToken = cookieStore.get("accessToken")?.value || null;
-        console.log("Next.js Server Action Token extracted:", accessToken);
+       
             if(!accessToken){
-                // throw new Error("User Not Logged In!");
+               
         
                 return {
                     success : false,
@@ -17,9 +17,9 @@ export const getPostById =async (id:string)=>{
             headers : {
                 // Authorization : accessToken as unknown as string,
                 // Authorization : `${accessToken}`,
-                // Authorization : `Bearer ${accessToken}`
+                Authorization : `Bearer ${accessToken}`
     
-                Cookie : `accessToken=${accessToken}`
+                // Cookie : `accessToken=${accessToken}`
             },
             cache:"no-cache",
             next:{
@@ -28,6 +28,6 @@ export const getPostById =async (id:string)=>{
             }
         })
         const result = await res.json();
-        // console.log(result)
+        
         return result
 }

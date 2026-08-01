@@ -4,9 +4,9 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button"; // 👈 Add Button
-import { CreditCard, Calendar, DollarSign, CheckCircle2, AlertTriangle, HelpCircle, Receipt, Eye } from "lucide-react"; // 👈 Add Eye Icon
-import Link from "next/link"; // 👈 Add Link
+import { Button } from "@/components/ui/button";
+import { CreditCard, Calendar, DollarSign, CheckCircle2, AlertTriangle, HelpCircle, Receipt, Eye } from "lucide-react";
+import Link from "next/link";
 
 interface PaymentMeta {
     card_type?: string;
@@ -31,7 +31,7 @@ interface PaymentHistoryClientProps {
 }
 
 export default function PaymentHistoryClient({ transactions }: PaymentHistoryClientProps) {
-    
+
     const getStatusBadge = (status: string) => {
         switch (status) {
             case "PAID":
@@ -72,7 +72,7 @@ export default function PaymentHistoryClient({ transactions }: PaymentHistoryCli
                                 <TableHead>Settlement Date</TableHead>
                                 <TableHead>Amount (BDT)</TableHead>
                                 <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Actions</TableHead> {/* 👈 Added header column */}
+                                <TableHead className="text-right">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -108,7 +108,7 @@ export default function PaymentHistoryClient({ transactions }: PaymentHistoryCli
                                         ৳{tx.amount.toLocaleString()}
                                     </TableCell>
                                     <TableCell>{getStatusBadge(tx.status)}</TableCell>
-                                    {/* 👁️ Details page route navigation toggle wrapper layout */}
+
                                     <TableCell className="text-right">
                                         <Link href={`/tenant-dashboard/payment-history/${tx.id}`}>
                                             <Button size="sm" variant="ghost" className="h-8 gap-1">

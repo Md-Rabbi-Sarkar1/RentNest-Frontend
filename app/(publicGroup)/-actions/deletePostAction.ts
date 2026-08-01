@@ -6,7 +6,7 @@ export const deletePostAction = async (postId: string) => {
     const accessToken = await isAccessTokenExist();
 
     try {
-        // 🌟 Matches your Express endpoint: router.delete('/:postId')
+       
         const res = await fetch(`${process.env.BACKEND_API_URL}/api/posts/${postId}`, {
             method: "DELETE",
             headers: {
@@ -18,7 +18,7 @@ export const deletePostAction = async (postId: string) => {
         const result = await res.json();
 
         if (result.success) {
-            // Purge cached queries instantly
+          
             revalidateTag("my-posts",'');
             revalidateTag("public-posts",'');
             revalidateTag("premium-posts",'');

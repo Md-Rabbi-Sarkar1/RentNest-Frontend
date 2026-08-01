@@ -31,7 +31,7 @@ export default async function LandlordRequestsPage() {
                 </p>
             </div>
             
-            {/* Inject into interactive layout dashboard component wrapper */}
+            
             <RentalRequestsClient initialData={res.data || []} />
         </main>
     );

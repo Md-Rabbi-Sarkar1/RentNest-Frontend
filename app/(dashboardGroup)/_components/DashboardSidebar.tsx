@@ -19,7 +19,7 @@ export default function DashboardSidebar({ user }: NavbarProps) {
 
   let navItems: ISidebarItem[] = [];
 
-  // 💡 FIXED: Read the role safely using optional chaining to prevent any properties crash
+
   const userRole = user?.data?.profile?.role || "";
 
   if (userRole === "LANDLORD") {
@@ -29,7 +29,7 @@ export default function DashboardSidebar({ user }: NavbarProps) {
   } else if (userRole === "ADMIN") {
     navItems = sidebarMenuItems.ADMIN;
   } else {
-    navItems = []; // Safe fallback empty array if data is loading
+    navItems = [];
   }
 
   return (

@@ -38,7 +38,7 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
                 </Button>
             </Link>
 
-            {/* Header Content Section */}
+           
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-6">
                 <div>
                     <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Application ID: {data.id}</span>
@@ -58,7 +58,7 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Section A: Rental Terms Information */}
+                
                 <Card>
                     <CardHeader className="flex flex-row items-center gap-2 pb-3">
                         <Calendar className="h-4 w-4 text-primary" />
@@ -76,7 +76,7 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
                     </CardContent>
                 </Card>
 
-                {/* Section B: Applicant Profile Parameters */}
+               
                 <Card>
                     <CardHeader className="flex flex-row items-center gap-2 pb-3">
                         <User className="h-4 w-4 text-primary" />
@@ -95,7 +95,7 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
                 </Card>
             </div>
 
-            {/* Section C: Linked Invoices Data Logs */}
+            
             <Card>
                 <CardHeader className="flex flex-row items-center gap-2 pb-3">
                     <Receipt className="h-4 w-4 text-primary" />

@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { IPost } from "@/lib/types";
-// import { IPost } from "@/lib/types";
 import { MessageSquareIcon, SparklesIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,18 +15,14 @@ export function PostsCard({ post }: PostsCardProps) {
     return (
       <Card className="gap-4">
         {post. imageUrl && (
-          // <img
-          //     src={post.thumbnail}
-          //     alt={post.title}
-          //     className="h-48 w-full object-cover"
-          // />
+          
           <Image
             src={post.imageUrl}
             unoptimized
             alt={post.title}
             width={400}
             height={400}
-            // fill
+           
           />
         )}
         <CardHeader>
@@ -55,10 +50,6 @@ export function PostsCard({ post }: PostsCardProps) {
             </Link>
              
             </span>
-            {/* <span className="flex items-center gap-1">
-              <MessageSquareIcon className="size-3.5" />
-              {commentCount}
-            </span> */}
           </div>
         </CardContent>
       </Card>

@@ -5,9 +5,9 @@ export const rentalRequest = async (id : string) =>{
 const cookieStore = await cookies();
         
             const accessToken = cookieStore.get("accessToken")?.value || null;
-        console.log("Next.js Server Action Token extracted:", accessToken);
+      
             if(!accessToken){
-                // throw new Error("User Not Logged In!");
+              
         
                 return {
                     success : false,
@@ -28,6 +28,6 @@ const cookieStore = await cookies();
             
         })
         const result = await res.json();
-        // console.log(result)
+       
         return result
 }

@@ -40,7 +40,7 @@ export default async function TenantPaymentDetailPage({ params }: PageProps) {
                 </Button>
             </Link>
 
-            {/* Main Header Block */}
+           
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b pb-6">
                 <div className="space-y-1">
                     <div className="flex items-center gap-2">
@@ -52,10 +52,10 @@ export default async function TenantPaymentDetailPage({ params }: PageProps) {
                 <div className="shrink-0">{getStatusBadge(tx.status)}</div>
             </div>
 
-            {/* Data Parameter Grids */}
+           
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                {/* Panel 1: Settlement Overview */}
+              
                 <Card className="md:col-span-2">
                     <CardHeader className="pb-3 border-b bg-muted/20">
                         <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -85,7 +85,7 @@ export default async function TenantPaymentDetailPage({ params }: PageProps) {
                     </CardContent>
                 </Card>
 
-                {/* Panel 2: Ledger Balance Calculations */}
+                
                 <Card className="flex flex-col justify-between">
                     <CardHeader className="pb-2 bg-emerald-500/5 border-b border-emerald-500/10">
                         <CardTitle className="text-sm font-medium text-emerald-800 dark:text-emerald-400">Total Settlement Balance</CardTitle>

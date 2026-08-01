@@ -9,7 +9,7 @@ export default async function AdminAllUsersPage() {
 
     return (
         <div className="p-6 md:p-10 space-y-6 max-w-7xl mx-auto w-full">
-            {/* Upper Dashboard Banner */}
+           
             <div className="flex items-center gap-3 border-b pb-5">
                 <div className="p-2.5 bg-blue-50 text-blue-600 dark:bg-blue-950/30 rounded-xl">
                     <UsersIcon className="h-6 w-6" />
@@ -22,7 +22,7 @@ export default async function AdminAllUsersPage() {
                 </div>
             </div>
 
-            {/* Interactive Users List DataTable wrapper */}
+           
             <AllUsersClient users={res?.data || []} />
         </div>
     );

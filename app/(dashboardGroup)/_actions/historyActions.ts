@@ -21,7 +21,7 @@ export async function getSinglePaymentDetailAction(paymentId: string) {
         const cookieStore = await cookies();
         const token = cookieStore.get("accessToken")?.value;
 
-        // Connects directly to app.use('/api/payments', paymentRouter)
+
         const res = await fetch(`${process.env.BACKEND_API_URL}/api/payments/${paymentId}`, {
             cache: "no-store",
             headers: {

@@ -29,29 +29,29 @@ interface RentalRequestsClientProps {
 export default function RentalRequestsClient({ initialData }: RentalRequestsClientProps) {
     const [isPending, startTransition] = useTransition();
 
-const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") => {
-    // 1. Trigger Loading Alert
-    const toastId = toast.loading(`Updating reservation state to ${status.toLowerCase()}...`);
-
-    startTransition(async () => {
-        // 2. Await Server Action execution
-        const result = await updateRentalStatus(rentalId, status);
+    const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") => {
         
-        // 3. Match backend results directly
-        if (result?.success) {
-            toast.success("Status Updated 🎉", { 
-                id: toastId,
-                description: result.message || `The request was successfully ${status.toLowerCase()}.`
-            });
-        } else {
-            toast.error("Operation Denied", { 
-                id: toastId,
-                // Displays explicit backend validation errors (e.g., "Alteration commands matching current owner profile invalid")
-                description: result?.message || "Could not modify status tracking entry."
-            });
-        }
-    });
-};
+        const toastId = toast.loading(`Updating reservation state to ${status.toLowerCase()}...`);
+
+        startTransition(async () => {
+           
+            const result = await updateRentalStatus(rentalId, status);
+
+            
+            if (result?.success) {
+                toast.success("Status Updated 🎉", {
+                    id: toastId,
+                    description: result.message || `The request was successfully ${status.toLowerCase()}.`
+                });
+            } else {
+                toast.error("Operation Denied", {
+                    id: toastId,
+                   
+                    description: result?.message || "Could not modify status tracking entry."
+                });
+            }
+        });
+    };
 
 
     const getStatusBadge = (status: string) => {
@@ -90,7 +90,7 @@ const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") =
                 <TableBody>
                     {initialData.map((item) => (
                         <TableRow key={item.id} className="hover:bg-muted/40 transition-colors">
-                            {/* Property Column */}
+                            
                             <TableCell className="font-medium">
                                 <div className="flex flex-col">
                                     <span className="truncate max-w-[200px] text-sm font-semibold">{item.property.title}</span>
@@ -98,7 +98,7 @@ const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") =
                                 </div>
                             </TableCell>
 
-                            {/* Tenant Column */}
+                            
                             <TableCell>
                                 <div className="flex items-center gap-3">
                                     <Avatar className="h-8 w-8">
@@ -113,7 +113,7 @@ const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") =
                                 </div>
                             </TableCell>
 
-                            {/* Date Column */}
+                           
                             <TableCell>
                                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                                     <Calendar className="h-3.5 w-3.5 shrink-0" />
@@ -121,7 +121,7 @@ const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") =
                                 </div>
                             </TableCell>
 
-                            {/* Rent Amount Column */}
+                            
                             <TableCell>
                                 <div className="flex items-center text-sm font-bold tracking-tight">
                                     <DollarSign className="h-3.5 w-3.5 text-muted-foreground -mr-0.5" />
@@ -129,25 +129,25 @@ const handleStatusUpdate = (rentalId: string, status: "ACCEPTED" | "REJECTED") =
                                 </div>
                             </TableCell>
 
-                            {/* Status Indicator Column */}
+                            
                             <TableCell>{getStatusBadge(item.status)}</TableCell>
 
-                            {/* Action Buttons Column */}
+                            
                             <TableCell className="text-right">
                                 {item.status === "PENDING" ? (
                                     <div className="flex justify-end gap-2">
-                                        <Button 
-                                            size="sm" 
-                                            variant="outline" 
+                                        <Button
+                                            size="sm"
+                                            variant="outline"
                                             className="border-emerald-200 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 h-8"
                                             disabled={isPending}
                                             onClick={() => handleStatusUpdate(item.id, "ACCEPTED")}
                                         >
                                             <Check className="h-4 w-4 mr-1" /> Accept
                                         </Button>
-                                        <Button 
-                                            size="sm" 
-                                            variant="outline" 
+                                        <Button
+                                            size="sm"
+                                            variant="outline"
                                             className="border-destructive/20 text-destructive hover:bg-destructive/5 h-8"
                                             disabled={isPending}
                                             onClick={() => handleStatusUpdate(item.id, "REJECTED")}

@@ -11,17 +11,17 @@ type PostState = {
 } | null;
 
 export const createPost = async (prevState: PostState, formData: FormData) => {
-    // 1. Extract values matching the new form field names
+
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const address = formData.get("address") as string;
     const priceInput = formData.get("price") as string;
     const imageUrl = formData.get("imageUrl") as string || null;
-    
-    // Checkbox mapping: Shadcn checkbox passes value "true" if checked
+
+
     const isPremium = formData.get("isPremium") === "true";
 
-    // 2. Parse Float for database data type safety
+
     const price = parseFloat(priceInput) || 0;
 
     const payload = {
@@ -33,7 +33,7 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
         isPremium
     };
 
-    console.log("Create Payload to Backend:", payload);
+    
 
     const accessToken = await isAccessTokenExist();
 
@@ -49,13 +49,13 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
 
         const result = await res.json();
 
-        // 3. Purge Next.js cache tags dynamically upon success
+
         if (result.success) {
-            revalidateTag("my-posts",'');
+            revalidateTag("my-posts", '');
             if (result.data?.isPremium) {
-                revalidateTag("premium-posts",'');
+                revalidateTag("premium-posts", '');
             } else {
-                revalidateTag("public-posts",'');
+                revalidateTag("public-posts", '');
             }
         }
 
@@ -71,7 +71,7 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
 }
 
 export const updatePost = async (postId: string, prevState: PostState, formData: FormData) => {
-    // 1. Extract values matching the new form field names
+
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const address = formData.get("address") as string;
@@ -79,7 +79,7 @@ export const updatePost = async (postId: string, prevState: PostState, formData:
     const imageUrl = formData.get("imageUrl") as string || null;
     const isPremium = formData.get("isPremium") === "true";
 
-    // 2. Parse Float for database data type safety
+
     const price = parseFloat(priceInput) || 0;
 
     const payload = {
@@ -91,7 +91,7 @@ export const updatePost = async (postId: string, prevState: PostState, formData:
         isPremium
     };
 
-    console.log("Update Payload to Backend:", payload);
+
 
     const accessToken = await isAccessTokenExist();
 
@@ -99,7 +99,7 @@ export const updatePost = async (postId: string, prevState: PostState, formData:
         const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/${postId}`, {
             method: "PUT",
             headers: {
-                Authorization : accessToken as unknown as string,
+                Authorization: accessToken as unknown as string,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(payload)
@@ -107,13 +107,13 @@ export const updatePost = async (postId: string, prevState: PostState, formData:
 
         const result = await res.json();
 
-        // 3. Purge Next.js cache tags dynamically upon success
+
         if (result.success) {
-            revalidateTag("my-posts",'');
+            revalidateTag("my-posts", '');
             if (result.data?.isPremium) {
-                revalidateTag("premium-posts",'');
+                revalidateTag("premium-posts", '');
             } else {
-                revalidateTag("public-posts",'');
+                revalidateTag("public-posts", '');
             }
         }
 
@@ -146,7 +146,7 @@ export const getMyPost = async () => {
             },
             cache: "no-cache",
             next: {
-                revalidate: 60 * 60 * 24, // 1 day
+                revalidate: 60 * 60 * 24,
                 tags: ["my-posts"]
             }
         });
@@ -164,25 +164,25 @@ export const getMyPost = async () => {
 
 
 export async function deletePostAction(postId: string) {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("accessToken")?.value;
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/${postId}`, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${token}`, // Pass token if backend requires auth validation
-        "Content-Type": "application/json"
-      }
-    });
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/landlord/${postId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
 
-    const result = await res.json();
+        const result = await res.json();
 
-    if (result.success) {
-      revalidatePath("/landlord-dashboard/my-posts"); // Force data refresh
+        if (result.success) {
+            revalidatePath("/landlord-dashboard/my-posts");
+        }
+        return result;
+    } catch (error) {
+        return { success: false, message: "Something went wrong while deleting" };
     }
-    return result;
-  } catch (error) {
-    return { success: false, message: "Something went wrong while deleting" };
-  }
 }

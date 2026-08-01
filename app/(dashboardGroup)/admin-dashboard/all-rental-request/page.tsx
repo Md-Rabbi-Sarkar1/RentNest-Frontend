@@ -9,7 +9,7 @@ export default async function AdminAllRentalRequestsPage() {
 
     return (
         <div className="p-6 md:p-10 space-y-6 max-w-7xl mx-auto w-full">
-            {/* Header Layout Banner Block */}
+            
             <div className="flex items-center gap-3 border-b pb-5">
                 <div className="p-2.5 bg-blue-50 text-blue-600 dark:bg-blue-950/30 rounded-xl">
                     <FileSearch className="h-6 w-6" />
@@ -22,7 +22,7 @@ export default async function AdminAllRentalRequestsPage() {
                 </div>
             </div>
 
-            {/* List Element Wrapper Rendering Section */}
+           
             <AllRentalsClient rentals={res?.data || []} />
         </div>
     );
