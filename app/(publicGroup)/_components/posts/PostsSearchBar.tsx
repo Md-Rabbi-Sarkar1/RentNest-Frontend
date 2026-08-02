@@ -45,7 +45,7 @@ export function PostsSearchBar() {
             <Input
                 defaultValue={searchParams.get("searchTerm") ? searchParams.get("searchTerm")?.toString() : ""}
                 onChange={(e) => handleChange(e.target.value)}
-                placeholder="Search news..."
+                placeholder="Search property..."
                 className="pl-9"
             />
         </div>

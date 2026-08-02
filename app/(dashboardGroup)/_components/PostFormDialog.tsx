@@ -83,6 +83,25 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
                         />
                     </div>
 
+                    <div className="flex flex-col gap-1.5">
+                        <label htmlFor="categoryName" className="text-sm font-medium">
+                            Select Property Category
+                        </label>
+                        <select
+                            id="categoryName"
+                            name="categoryName"
+                            required
+                            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                            <option value="" disabled selected>Choose a category...</option>
+                            <option value="HOUSE">House</option>
+                            <option value="APPARTMENT">Appartment</option>
+                            <option value="STUDIO">Studio</option>
+                            <option value="HOMECAR">Homecar</option>
+                            <option value="TENT">Tent</option>
+                        </select>
+                    </div>
+
 
                     <div className="space-y-2">
                         <Label htmlFor="address">Address</Label>

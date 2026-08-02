@@ -12,7 +12,7 @@ const LandlordMyPostsPage = () => {
         <div>
           <h1 className="text-2xl font-semibold">My Posts</h1>
           <p className="text-sm text-muted-foreground">
-            Create and manage your own news posts.
+            Create and manage your own Property.
           </p>
         </div>
         <PostFormDialog mode="create" />

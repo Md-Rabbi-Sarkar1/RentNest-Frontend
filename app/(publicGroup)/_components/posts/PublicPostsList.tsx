@@ -17,7 +17,7 @@ export async function PublicPostsList({
   if (!result.success || !result.data?.length) {
     return (
       <p className="py-12 text-center text-muted-foreground">
-        No news found.
+        No property found.
       </p>
     );
   }
