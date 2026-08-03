@@ -19,6 +19,7 @@ import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { rentalRequest } from '../../-actions/rentalRequest';
 import { toast } from 'sonner';
+import { createBookmarkApi } from '../../-actions/bookMarkActions';
 
 interface Landlord {
   id: string;
@@ -48,9 +49,12 @@ interface PropertyData {
 interface PropertyDetailsProps {
   data: PropertyData;
 }
+interface BookmarkButtonProps {
+  propertyId: string;
+}
 
 export default function PropertyDetails({ data }: PropertyDetailsProps) {
-
+  console.log(data)
   const formattedDate = new Date(data.createdAt).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
@@ -99,6 +103,17 @@ export default function PropertyDetails({ data }: PropertyDetailsProps) {
       }
     });
   }
+  const handleBookmark = (propertyId:string) => {
+    startTransition(async () => {
+      const result = await createBookmarkApi(propertyId);
+
+      if (result.success) {
+        toast.success("Property saved to bookmarks!");
+      } else {
+        toast.error(result.message);
+      }
+    });
+  };
   return (
     <div className="container mx-auto max-w-6xl p-4 md:p-8">
 
@@ -225,8 +240,21 @@ export default function PropertyDetails({ data }: PropertyDetailsProps) {
                 {data.isAvailable ? "Rental Request" : "Currently Unavailable"}
               </Button>
 
-              <Button variant="outline" className="w-full py-6" size="lg">
-                Save to Bookmarks
+              <Button
+                variant="outline"
+                className="w-full py-6 transition-all duration-200"
+                size="lg"
+                disabled={isPending}
+                onClick={()=>handleBookmark(data.id)}
+              >
+                {isPending ? (
+                  <span className="flex items-center gap-2">
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    Saving...
+                  </span>
+                ) : (
+                  "Save to Bookmarks"
+                )}
               </Button>
             </CardContent>
           </Card>

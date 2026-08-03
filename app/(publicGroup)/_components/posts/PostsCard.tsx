@@ -15,7 +15,7 @@ export function PostsCard({ post }: PostsCardProps) {
     return (
       <Card className="overflow-hidden flex flex-col justify-between group hover:shadow-md transition-all duration-200 border-muted/70 bg-card">
         
-        {/* Modern Image Container with Fixed Ratio */}
+       
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
           {hasValidImage ? (
             <Image
@@ -31,7 +31,7 @@ export function PostsCard({ post }: PostsCardProps) {
             </div>
           )}
 
-          {/* Absolute Badges Overlay */}
+          
           <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
             <Badge className={post.isAvailable ? "bg-emerald-600 hover:bg-emerald-600 text-white shadow-sm" : "bg-destructive text-white shadow-sm"}>
               {post.isAvailable ? "Available" : "Rented"}
@@ -45,13 +45,13 @@ export function PostsCard({ post }: PostsCardProps) {
             )}
           </div>
 
-          {/* Absolute Price Tag Overlay */}
+          
           <div className="absolute bottom-3 right-3 bg-background/95 backdrop-blur-sm px-2.5 py-1 rounded-md border shadow-sm text-xs font-bold text-primary">
             ${post.price?.toLocaleString() || "0"}/mo
           </div>
         </div>
 
-        {/* Card Title & Location */}
+        
         <CardHeader className="p-4 pb-0">
           <CardTitle className="text-base font-semibold line-clamp-1 group-hover:text-primary transition-colors">
             {post.title}
@@ -65,14 +65,14 @@ export function PostsCard({ post }: PostsCardProps) {
           )}
         </CardHeader>
 
-        {/* Card Content & Action Footer */}
+        
         <CardContent className="p-4 pt-2.5 space-y-4 flex-1 flex flex-col justify-between">
           <p className="line-clamp-2 text-xs text-muted-foreground leading-relaxed">
             {post.description || "No property description provided."}
           </p>
 
           <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-3 border-t border-muted/60">
-            {/* Landlord & Date Meta Info */}
+           
             <span className="flex items-center gap-1 max-w-[65%] truncate">
               <UserIcon className="size-3 shrink-0" />
               <span className="truncate">
@@ -80,7 +80,7 @@ export function PostsCard({ post }: PostsCardProps) {
               </span>
             </span>
 
-            {/* View Details Interactive Link */}
+            
             <Link 
               href={`/posts/${post.id}`} 
               className="text-xs font-semibold text-primary hover:underline flex items-center gap-0.5 group/link shrink-0"

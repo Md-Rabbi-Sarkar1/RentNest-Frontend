@@ -17,4 +17,9 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
         href: "/tenant-dashboard/payment-history",
         icon: FileText
     },
+    {
+        label: "Bookmarks Properties",
+        href: "/tenant-dashboard/bookmark-properties",
+        icon: FileText
+    },
 ]
