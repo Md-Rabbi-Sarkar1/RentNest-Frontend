@@ -4,7 +4,7 @@ import { AlertCircle, FileText } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getTenantRentalRequests } from '../../_actions/tenantAction';
 import TenantRequestsClient from '../../_components/TenantRequestsClient';
-
+export const dynamic = "force-dynamic";
 export default async function TenantRequestsDashboardPage() {
     const res = await getTenantRentalRequests();
 

@@ -1,7 +1,7 @@
 import { getUserBookmarksApi } from "../../_actions/tenantAction";
 import BookmarksList from "../../_components/BookmarksList";
 
-
+export const dynamic = "force-dynamic";
 export default async function BookmarksPage() {
   const response = await getUserBookmarksApi();
 

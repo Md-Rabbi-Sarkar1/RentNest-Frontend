@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, MailIcon, ShieldCheckIcon, UserIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { EditProfileDialog } from "./_components/EditProfileDialog"; 
-
+export const dynamic = "force-dynamic";
 export default async function ProfilePage() {
   const user = await getMe();
 

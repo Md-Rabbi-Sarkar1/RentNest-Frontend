@@ -8,7 +8,7 @@ const coreValues = [
   { title: "Ultimate Security", desc: "Every security deposit transaction is routed safely via verified gateway servers.", icon: ShieldCheck, color: "text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40" },
   { title: "Tenant Welfare", desc: "We build features to level the playing field between property landlords and tenants.", icon: HeartHandshake, color: "text-pink-500 bg-pink-50 dark:bg-pink-950/40" },
 ];
-
+export const dynamic = "force-dynamic";
 export default function AboutPage() {
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-20 space-y-16">

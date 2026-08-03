@@ -3,7 +3,7 @@ import { getAllRentalsAction } from "../_actions/adminActions";
 
 import { FileSearch } from "lucide-react";
 import AllRentalsClient from "../_components/AllRentalsClient";
-
+export const dynamic = "force-dynamic";
 export default async function AdminAllRentalRequestsPage() {
     const res = await getAllRentalsAction();
 

@@ -3,7 +3,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { getMe } from "@/service/getMe";
 import DashboardSidebar from "./_components/DashboardSidebar";
 import { redirect } from "next/navigation";
-
+export const dynamic = "force-dynamic";
 const DashboardLayout = async (
     {
         children

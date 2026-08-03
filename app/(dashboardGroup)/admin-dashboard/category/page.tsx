@@ -5,7 +5,7 @@ import { getAdminCategoriesWithPropertiesAction } from "../_actions/adminActions
 import { CreateCategoryDialog } from "../_components/CreateCategoryDialog";
 import CategoryListManager from "../_components/CategoryListManager";
 
-
+export const dynamic = "force-dynamic";
 export default async function AdminCategoryDashboardPage() {
    
     const res = await getAdminCategoriesWithPropertiesAction();

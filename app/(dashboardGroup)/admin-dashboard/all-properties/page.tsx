@@ -3,7 +3,7 @@ import { getAllPropertiesAction } from "../_actions/adminActions";
 
 import { Building2 } from "lucide-react";
 import AllPropertiesClient from "../_components/AllPropertiesClient";
-
+export const dynamic = "force-dynamic";
 export default async function AdminAllPropertiesPage() {
     const res = await getAllPropertiesAction();
 

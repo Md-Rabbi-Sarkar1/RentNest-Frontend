@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import RegisterForm from "../_components/RegisterForm";
-
+export const dynamic = "force-dynamic";
 export default function RegisterPage() {
   return (
     <>

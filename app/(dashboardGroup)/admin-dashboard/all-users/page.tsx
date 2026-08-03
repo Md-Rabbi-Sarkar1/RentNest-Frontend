@@ -3,7 +3,7 @@ import { getAllUsersAction } from "../_actions/adminActions";
 
 import { UsersIcon } from "lucide-react";
 import AllUsersClient from "../_components/AllUsersClient";
-
+export const dynamic = "force-dynamic";
 export default async function AdminAllUsersPage() {
     const res = await getAllUsersAction();
 

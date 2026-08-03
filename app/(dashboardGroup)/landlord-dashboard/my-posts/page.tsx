@@ -4,7 +4,7 @@ import { MyPostsSkeleton } from "../../_components/MyPostSkeleton";
 import { MyPostsList } from "../../_components/MyPostList";
 import { PostFormDialog } from "../../_components/PostFormDialog";
 
-
+export const dynamic = "force-dynamic";
 const LandlordMyPostsPage = () => {
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-10 sm:px-6 lg:px-8">

@@ -4,7 +4,7 @@ import { AlertCircle, History } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getPaymentHistoryAction } from '../../_actions/historyActions';
 import PaymentHistoryClient from '../../_components/PaymentHistoryClient';
-
+export const dynamic = "force-dynamic";
 export default async function TenantPaymentHistoryPage() {
     const res = await getPaymentHistoryAction();
 

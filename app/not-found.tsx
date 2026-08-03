@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
-
+export const dynamic = "force-dynamic";
 export default function NotFound() {
   return (
     <div className="flex min-h-[75vh] w-full flex-col items-center justify-center text-center px-4 space-y-6">

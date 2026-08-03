@@ -3,7 +3,7 @@ import { PostsSearchBar } from "../_components/posts/PostsSearchBar";
 import { PostsSkeleton } from "../_components/posts/PostsSkeleton";
 import { PublicPostsList } from "../_components/posts/PublicPostsList";
 
-
+export const dynamic = "force-dynamic";
 const PostsPage = ({
   searchParams,
 }: {

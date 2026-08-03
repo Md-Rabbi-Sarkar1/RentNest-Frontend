@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Search, FileText, Landmark, Key, BarChart3 } from "lucide-react";
-
+export const dynamic = "force-dynamic";
 const tenantServices = [
   { title: "Verified Smart Search", desc: "Browse real properties verified through our multi-step physical and ownership check protocols.", icon: Search },
   { title: "Seamless Digital Forms", desc: "Submit application requests and legal digital documents directly through Next.js secure workflows.", icon: FileText },
