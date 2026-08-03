@@ -119,7 +119,7 @@ export async function getAdminCategoriesWithPropertiesAction() {
             cache: "no-store"
         });
         if (!res.ok) return { success: false, data: [] };
-        // console.log(res.data)
+
         return await res.json();
     } catch (error) {
         return { success: false, data: [] };

@@ -41,8 +41,8 @@ export type IPost ={
   imageUrl: string;
   isAvailable: boolean;
   isPremium: boolean;
-  createdAt: string; // ISO Date String
-  updatedAt: string; // ISO Date String
+  createdAt: string; 
+  updatedAt: string; 
   categoryName: string;
   landlordId: string;
   categoryId: number;

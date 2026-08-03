@@ -18,10 +18,10 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
     const imageUrl = formData.get("imageUrl") as string || null;
     const isPremium = formData.get("isPremium") === "true";
 
-    // 1. Get categoryName from form submission
+   
     const categoryName = formData.get("categoryName") as string;
 
-    // 2. Map categoryName to the specific categoryId required by your DB
+ 
     const categoryMapping: Record<string, number> = {
         "HOUSE": 1,
         "APPARTMENT": 2,
@@ -30,12 +30,12 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
         "TENT": 5
     };
 
-    // fallback to null if someone submits an invalid category
+   
     const categoryId = categoryMapping[categoryName] || null;
 
     const price = parseFloat(priceInput) || 0;
 
-    // 3. Add both categoryName and categoryId into your payload
+  
     const payload = {
         title,
         description,
@@ -43,8 +43,8 @@ export const createPost = async (prevState: PostState, formData: FormData) => {
         price,
         imageUrl,
         isPremium,
-        categoryName, // Optional: tracking plain-text label
-        categoryId    // Crucial: for structural filtering later
+        categoryName, 
+        categoryId  
     };
 
     const accessToken = await isAccessTokenExist();

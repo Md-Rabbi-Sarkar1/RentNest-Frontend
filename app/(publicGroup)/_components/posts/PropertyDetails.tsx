@@ -54,7 +54,7 @@ interface BookmarkButtonProps {
 }
 
 export default function PropertyDetails({ data }: PropertyDetailsProps) {
-  console.log(data)
+
   const formattedDate = new Date(data.createdAt).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
